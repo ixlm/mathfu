@@ -57,6 +57,19 @@ class Vector<T, 4> {
         z(static_cast<T>(v.z)),
         w(static_cast<T>(v.w)) {}
 
+  // //added by xlm
+  // const T* getDataPtr() const 
+  // {
+  //   return data_;
+  // }
+
+  //added by xlm
+  Vector(const std::initializer_list<T>& list)
+  {
+    int i=0;
+    for (auto val : list)
+      data_[i++] = val;
+  }
   inline T& operator()(const int i) { return data_[i]; }
 
   inline const T& operator()(const int i) const { return data_[i]; }

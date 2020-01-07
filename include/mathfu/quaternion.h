@@ -624,5 +624,10 @@ inline Quaternion<T> operator*(T s, const Quaternion<T>& q) {
 }
 /// @}
 
+
+using Quaternionf = mathfu::Quaternion<float>;
+using Quaterniond = mathfu::Quaternion<double>;
+
+
 }  // namespace mathfu
 #endif  // MATHFU_QUATERNION_H_

@@ -22,6 +22,7 @@
 #include <cmath>
 
 #include <assert.h>
+#include <initializer_list>
 
 /// @file mathfu/matrix.h
 /// @brief Matrix class and functions.
@@ -199,6 +200,34 @@ class Matrix {
   /// @param s Scalar value used to initialize each element of the matrix.
   explicit inline Matrix(T s) {
     MATHFU_MAT_OPERATION((data_[i] = Vector<T, Rows>(s)));
+  }
+
+  ///@brief, added by xlm, add std initilizer list support
+  Matrix(const std::initializer_list<std::initializer_list<T> >& list)
+  {
+    int i=0;
+    for (auto item : list)
+    {
+      int j=0;
+      for (auto val : item)
+      {
+        data_[i][j++] = val;
+      }
+      ++i;
+    }
+    // std::initializer_list<std::initializer_list<T> >::const_iterator row = list.begin();
+
+    // // const auto row = list.begin();
+    // for (std::size_t index=0; index<list.size(); ++index, ++row)
+    // {
+    //   data_[index] = Vector<T,row->size()>(*row) ;
+    //   // auto elem = row->begin();
+    //   // for (std::size_t w=0; w<list.begin()->size(); ++w, ++elem)
+    //   // {
+    //   //   // data_[index*list.begin()->size() + w] = *elem;
+    //   //   data_[index][w] = *elem;
+    //   // }
+    // }
   }
 
   /// @brief Construct a Matrix from four floats.
@@ -1603,6 +1632,33 @@ static inline CompatibleT ToTypeHelper(const Matrix<T, Rows, Cols>& m) {
 /// this data type only includes the variable information for the transform.
 typedef Matrix<float, 4, 3> AffineTransform;
 /// @}
+
+
+template <typename T> using Mat2 = mathfu::Matrix<T, 2, 2>;
+template <typename T> using Mat3 = mathfu::Matrix<T, 3, 3>;
+template <typename T> using Mat4 = mathfu::Matrix<T, 4, 4>;
+
+using Mat2b = Mat2<uint8_t>;
+using Mat3b = Mat3<uint8_t>;
+using Mat4b = Mat4<uint8_t>;
+
+using Mat2i = Mat2<int>;
+using Mat3i = Mat3<int>;
+using Mat4i = Mat4<int>;
+
+using Mat2ul = Mat2<unsigned long>;
+using Mat3ul = Mat3<unsigned long>;
+using Mat4ul = Mat4<unsigned long>;
+
+using Mat2f = Mat2<float>;
+using Mat3f = Mat3<float>;
+using Mat4f = Mat4<float>;
+
+using Mat2d = Mat2<double>;
+using Mat3d = Mat3<double>;
+using Mat4d = Mat4<double>;
+
+
 
 }  // namespace mathfu
 

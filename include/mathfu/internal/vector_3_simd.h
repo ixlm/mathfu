@@ -113,6 +113,14 @@ class Vector<float, 3> {
 #endif  // MATHFU_COMPILE_WITH_PADDING
   }
 
+  //added by xlm
+  Vector(const std::initializer_list<float>& list)
+  {
+    int i=0;
+    for (auto val : list)
+      data_[i++] = val;
+  }
+
   inline float& operator()(const int i) { return data_[i]; }
 
   inline const float& operator()(const int i) const { return data_[i]; }

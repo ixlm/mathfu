@@ -50,6 +50,14 @@ class Vector<float, 4> {
     data_[3] = static_cast<float>(v[3]);
   }
 
+  //added by xlm
+  Vector(const std::initializer_list<float>& list)
+  {
+    int i=0;
+    for (auto val : list)
+      data_[i++] = val;
+  }
+
   explicit inline Vector(const simd4f& v) { simd4 = v; }
 
   explicit inline Vector(const float& s) { simd4 = simd4f_splat(s); }

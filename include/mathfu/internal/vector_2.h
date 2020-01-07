@@ -47,6 +47,18 @@ class Vector<T, 2> {
   explicit inline Vector(const Vector<U, 2>& v)
       : x(static_cast<T>(v.x)), y(static_cast<T>(v.y)) {}
 
+  //added by xlm
+  Vector(const std::initializer_list<T>& list)
+  {
+    int i=0;
+    for (auto val : list)
+      data_[i++] = val;
+  }
+  // //added by xlm
+  // const T* getDataPtr() const 
+  // {
+  //   return data_;
+  // }
   inline T& operator()(const int i) { return data_[i]; }
 
   inline const T& operator()(const int i) const { return data_[i]; }

@@ -13,8 +13,8 @@
 # limitations under the License.
 cmake_minimum_required(VERSION 2.8.12)
 
-set(PROJECT_NAME MathFu)
-project(MathFu)
+# set(PROJECT_NAME MathFu)
+project(mathfu)
 
 # Call fplutil to get locations of dependencies and set common build settings.
 include("cmake/find_fplutil.cmake")
@@ -106,7 +106,8 @@ function(mathfu_enable_warnings target)
   elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX OR
       CMAKE_COMPILER_IS_CLANGXX)
     # Set the maximum warning level for gcc.
-    target_compile_options(${target} PRIVATE -Wall -Wextra -Werror
+    target_compile_options(${target} PRIVATE -Wall -Wextra -Werror 
+        -Wno-unused-parameter
       -Wno-long-long -Wno-variadic-macros)
   endif()
 endfunction()

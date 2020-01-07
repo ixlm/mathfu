@@ -20,6 +20,7 @@
 #include <cmath>
 
 #include "mathfu/utilities.h"
+#include <initializer_list>
 
 
 /// @file mathfu/vector.h Vector
@@ -170,6 +171,19 @@ class Vector {
   inline Vector(const Vector<T, Dims>& v) {
     MATHFU_VECTOR_OPERATION(data_[i] = v.data_[i]);
   }
+  //added by xlm
+  Vector(const std::initializer_list<T>& list)
+  {
+    int i=0;
+    for (auto val : list)
+      data_[i++] = val;
+  }
+
+  //added by xlm
+  // const T* getDataPtr() const 
+  // {
+  //   return data_;
+  // }
 
   /// @brief Create a vector from another vector of a different type.
   ///
@@ -1068,6 +1082,38 @@ inline Vector<T, Dims> Clamp(const Vector<T, Dims>& x,
   return Vector<T, Dims>::Max(lower, Vector<T, Dims>::Min(x, upper));
 }
 /// @}
+
+template <typename T> using Vec2 = mathfu::Vector<T, 2>;
+template <typename T> using Vec3 = mathfu::Vector<T, 3>;
+template <typename T> using Vec4 = mathfu::Vector<T, 4>;
+
+using Vec2b = Vec2<uint8_t>;
+using Vec3b = Vec3<uint8_t>;
+using Vec4b = Vec4<uint8_t>;
+
+using Vec2i = Vec2<int>;
+using Vec3i = Vec3<int>;
+using Vec4i = Vec4<int>;
+
+using Vec2ul = Vec2<uint32_t>;
+using Vec3ul = Vec3<uint32_t>;
+using Vec4ul = Vec4<uint32_t>;
+
+using Vec2f = Vec2<float>;
+using Vec3f = Vec3<float>;
+using Vec4f = Vec4<float>;
+
+using Vec2d = Vec2<double>;
+using Vec3d = Vec3<double>;
+using Vec4d = Vec4<double>;
+// namespace Axis {
+
+// const Vec3f X({ 1.f, 0.f, 0.f });
+// const Vec3f Y({ 0.f, 1.f, 0.f });
+// const Vec3f Z({ 0.f, 0.f, 1.f });
+
+// }
+
 
 }  // namespace mathfu
 
